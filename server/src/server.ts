@@ -1,18 +1,14 @@
 import express, { Request, Response } from "express";
 import helmet from "helmet";
 
+import { userRouter } from "./routes";
+
 const app = express();
 
 // Basic security headers
 app.use(helmet());
 
 // Routing
-const router = express.Router();
-
-router.get("/", (req: Request, res: Response): void => {
-  res.send("Hello, world");
-});
-
-app.use(router);
+app.use("/users", userRouter);
 
 app.listen(3000);

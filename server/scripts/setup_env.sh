@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Functions
-
+# ---------------------------------------------------------
 ask_env_variables() {
   # Port server will run in
   read -p "port: (3000)" PORT
@@ -27,7 +27,8 @@ save_env() {
    echo -e "PORT=${PORT}\nNODE_ENV=${NODE_ENV}" > ../.env
 }
 
-# Script start
+
+# ---------------------------------------------------------
 
 echo "Setting up env variables.."
 

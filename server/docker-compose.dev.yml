@@ -1,0 +1,27 @@
+version: "3.6"
+
+networks:
+  public:
+
+services:
+  nginx:
+    image: nginx:1.19
+    container_name: series_nginx
+    volumes:
+      - ./certificates/nginx.key:/etc/nginx/certificates/nginx.key
+      - ./certificates/nginx.crt:/etc/nginx/certificates/nginx.crt
+      - ./nginx.dev.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 443:443
+    networks:
+      - public
+  backend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+    image: series_backend
+    container_name: series_backend
+    volumes:
+      - .:/app
+    networks:
+      - public

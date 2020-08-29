@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import helmet from "helmet";
 
 // Load env variables from .env-files only if not in production
 if (process.env.NODE_ENV !== "production") {
@@ -7,6 +8,10 @@ if (process.env.NODE_ENV !== "production") {
 
 const app = express();
 
+// Basic security headers
+app.use(helmet());
+
+// Routing
 const router = express.Router();
 
 router.get("/", (req: Request, res: Response): void => {
@@ -15,4 +20,4 @@ router.get("/", (req: Request, res: Response): void => {
 
 app.use(router);
 
-app.listen(process.env.PORT || 3000);
+app.listen(3000);

@@ -3,11 +3,7 @@
 # Functions
 # ---------------------------------------------------------
 ask_env_variables() {
-  # Port server will run in
-  read -p "port: (3000)" PORT
-  PORT=${PORT:-3000}
-
-  read -p "Node environment: (development)" NODE_ENV
+  read -p "Node environment: (development) " NODE_ENV
   NODE_ENV=${NODE_ENV:-development}
 
   # Newline
@@ -16,7 +12,6 @@ ask_env_variables() {
 
 print_env() {
   echo -e "Current environment variables:\n"
-  echo "PORT=${PORT}"
   echo "NODE_ENV=${NODE_ENV}"
 
   # Newline
@@ -24,7 +19,7 @@ print_env() {
 }
 
 save_env() {
-   echo -e "PORT=${PORT}\nNODE_ENV=${NODE_ENV}" > ../.env
+   echo -e "NODE_ENV=${NODE_ENV}" > ../env/backend.env
 }
 
 
@@ -36,7 +31,7 @@ while true; do
   ask_env_variables
   print_env
 
-  read -p "Are these values correct? y/n" confirmation
+  read -p "Are these values correct? y/n " confirmation
   case $confirmation in
         [Yy]* ) save_env;break;;
         * ) continue;;

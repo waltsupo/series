@@ -1,7 +1,5 @@
 FROM node:14.9
 
-COPY . /app
-
 WORKDIR /app
 
 CMD ["npm", "start"]

@@ -2,6 +2,11 @@ version: "3.6"
 
 networks:
   app:
+  services:
+
+volumes:
+  series_pgdata:
+    external: true
 
 services:
   nginx:
@@ -27,3 +32,13 @@ services:
       - backend.env
     networks:
       - app
+      - services
+  postgresql:
+    image: postgres:13
+    container_name: series_db
+    env_file:
+      - postgresql.env
+    volumes:
+      - series_pgdata:/var/lib/postgresql/data
+    networks:
+      - services

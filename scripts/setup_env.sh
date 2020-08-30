@@ -38,14 +38,14 @@ print_database_env() {
 }
 
 save_env() {
-  echo -e "NODE_ENV=${NODE_ENV}
+  echo "NODE_ENV=${NODE_ENV}
 POSTGRES_USER=${POSTGRES_USER}
 POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-POSTGRES_DB=${POSTGRES_DB}" > ../env/backend.env
+POSTGRES_DB=${POSTGRES_DB}" > ./env/backend.env
 
-  echo -e "POSTGRES_USER=${POSTGRES_USER}
+  echo "POSTGRES_USER=${POSTGRES_USER}
 POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-POSTGRES_DB=${POSTGRES_DB}" > ../env/postgresql.env
+POSTGRES_DB=${POSTGRES_DB}" > ./env/postgresql.env
 }
 
 

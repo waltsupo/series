@@ -25,8 +25,8 @@ create_service_certificates() {
 echo "Creating required certificates for development in localhost.."
 
 # Move to certificates folder
-mkdir -p ../certificates
-cd ../certificates
+mkdir -p certificates
+cd certificates
 
 create_ca_certificates
 create_service_certificates nginx

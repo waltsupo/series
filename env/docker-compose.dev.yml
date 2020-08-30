@@ -1,4 +1,4 @@
-version: "3.6"
+version: '3.6'
 
 networks:
   app:
@@ -23,7 +23,7 @@ services:
   backend:
     build:
       dockerfile: Dockerfile.dev
-      context: ../server
+      context: .
     image: series_backend
     container_name: series_backend
     volumes:

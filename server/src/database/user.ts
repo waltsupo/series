@@ -14,12 +14,18 @@ export default (sequelize: Sequelize.Sequelize) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
       },
-      name: {
+      username: {
         allowNull: false,
         type: DataTypes.STRING,
       },
     },
-    { sequelize, modelName: "user" }
+    {
+      defaultScope: {
+        attributes: ["id", "username"],
+      },
+      sequelize,
+      modelName: "user",
+    }
   );
 
   return User;

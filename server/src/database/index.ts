@@ -1,6 +1,6 @@
-import Sequelize from "sequelize";
+import Sequelize from 'sequelize';
 
-import user from "./user";
+import user from './user';
 
 let sequelize: Sequelize.Sequelize;
 
@@ -15,9 +15,9 @@ try {
 
 const db = {
   User: user(sequelize),
-  sequelize,
+  sequelize
 };
 
-sequelize.sync();
+sequelize.sync({ force: true });
 
 export default db;

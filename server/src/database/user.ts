@@ -1,4 +1,4 @@
-import Sequelize, { Model, DataTypes } from "sequelize";
+import Sequelize, { Model, DataTypes } from 'sequelize';
 
 class User extends Model {
   id: string;
@@ -9,22 +9,21 @@ export default (sequelize: Sequelize.Sequelize) => {
   User.init(
     {
       id: {
-        allowNull: false,
         primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        autoIncrement: true,
+        type: DataTypes.INTEGER
       },
       username: {
         allowNull: false,
-        type: DataTypes.STRING,
-      },
+        type: DataTypes.STRING
+      }
     },
     {
       defaultScope: {
-        attributes: ["id", "username"],
+        attributes: ['id', 'username']
       },
       sequelize,
-      modelName: "user",
+      modelName: 'user'
     }
   );
 

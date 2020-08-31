@@ -1,4 +1,4 @@
-version: '3.6'
+version: "3.6"
 
 networks:
   app:
@@ -23,11 +23,19 @@ services:
   backend:
     build:
       dockerfile: Dockerfile.dev
-      context: .
+      context: ../server
     image: series_backend
     container_name: series_backend
     volumes:
       - ../server:/app
+      # -----------------------------------
+      # Fix for bcrypt
+      # Bcrypt needs to be built on the system it will run on
+      # For example running `npm i` on windows machine and using that bcrypt library on linux container will not work
+      # On docker build, install all dependencies and when running, replace everything else with the ones in dev environment
+      # This binds empty location from host to bcrypt-location inside docker, excluding it from the volume above
+      - /app/node_modules/bcrypt
+      # -----------------------------------
     env_file:
       - backend.env
     networks:

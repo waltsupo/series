@@ -3,6 +3,7 @@ import Sequelize, { Model, DataTypes } from "sequelize";
 class User extends Model {
   id: string;
   username: string;
+  password: string;
 }
 
 export default (sequelize: Sequelize.Sequelize) => {
@@ -15,6 +16,7 @@ export default (sequelize: Sequelize.Sequelize) => {
       },
       username: {
         allowNull: false,
+        unique: true,
         type: DataTypes.STRING,
       },
       password: {
@@ -25,6 +27,12 @@ export default (sequelize: Sequelize.Sequelize) => {
     {
       defaultScope: {
         attributes: ["id", "username"],
+      },
+      scopes: {
+        // Used for sessions and authentication
+        auth: {
+          attributes: ["id", "username", "password"],
+        },
       },
       sequelize,
       modelName: "user",

@@ -27,6 +27,7 @@ services:
     image: series_backend
     container_name: series_backend
     volumes:
+      - ./logs:/var/log/series
       - ../server:/app
       # -----------------------------------
       # Fix for bcrypt
@@ -48,5 +49,12 @@ services:
       - postgresql.env
     volumes:
       - series_pgdata:/var/lib/postgresql/data
+    networks:
+      - services
+  redis:
+    image: redis:6
+    container_name: series_redis
+    volumes:
+      - ./redis_data:/data
     networks:
       - services

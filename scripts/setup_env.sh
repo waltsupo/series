@@ -38,7 +38,11 @@ print_database_env() {
 }
 
 save_env() {
+  # Generate random secrets
+  COOKIE_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9!"#$%&\()*+,-./:;<=>?@[\]^_`{|}~' | fold -w 32 | head -n 1)
+
   echo "NODE_ENV=${NODE_ENV}
+COOKIE_SECRET=${COOKIE_SECRET}
 POSTGRES_USER=${POSTGRES_USER}
 POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 POSTGRES_DB=${POSTGRES_DB}" > ./env/backend.env

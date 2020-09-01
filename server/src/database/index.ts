@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
+import Sequelize from "sequelize";
 
-import user from './user';
+import user from "./user";
 
 let sequelize: Sequelize.Sequelize;
 
@@ -10,14 +10,15 @@ try {
   );
 } catch (error) {
   console.log(error);
+  // Exit as there is not database connection available
   process.exit(1);
 }
 
 const db = {
   User: user(sequelize),
-  sequelize
+  sequelize,
 };
 
-sequelize.sync({ force: true });
+sequelize.sync();
 
 export default db;

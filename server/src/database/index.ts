@@ -10,6 +10,7 @@ try {
   );
 } catch (error) {
   console.log(error);
+  // Exit as there is not database connection available
   process.exit(1);
 }
 

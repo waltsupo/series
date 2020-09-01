@@ -2,4 +2,13 @@ FROM node:14.9
 
 WORKDIR /app
 
+# -----------------------------------
+# Next 3 lines are a fix for bcrypt
+# Install all packages on image build and when running the container, exclude bcrypt's location from mount
+# Second part of the fix in docker-compose.dev.yml
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
+RUN npm install
+# -----------------------------------
+
 CMD ["npm", "start"]

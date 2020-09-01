@@ -3,23 +3,40 @@ import Sequelize, { Model, DataTypes } from "sequelize";
 class User extends Model {
   id: string;
   username: string;
+  password: string;
 }
 
 export default (sequelize: Sequelize.Sequelize) => {
   User.init(
     {
       id: {
-        allowNull: false,
         primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        autoIncrement: true,
+        type: DataTypes.INTEGER,
       },
-      name: {
+      username: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+      },
+      password: {
         allowNull: false,
         type: DataTypes.STRING,
       },
     },
-    { sequelize, modelName: "user" }
+    {
+      defaultScope: {
+        attributes: ["id", "username"],
+      },
+      scopes: {
+        // Used for sessions and authentication
+        auth: {
+          attributes: ["id", "username", "password"],
+        },
+      },
+      sequelize,
+      modelName: "user",
+    }
   );
 
   return User;

@@ -27,3 +27,16 @@ export const validationResultsMiddleware = (
   }
   next();
 };
+
+// Helper function to fitler empty keys from object
+export const filterEmptyValues = (original: {
+  [k: string]: any;
+}): { [k: string]: any } => {
+  const filteredKeys: string[] = Object.keys(original).filter(
+    (key: string) => !!original[key]
+  );
+
+  const newObject: { [key: string]: any } = {};
+  filteredKeys.map((key) => (newObject[key] = original[key]));
+  return newObject;
+};

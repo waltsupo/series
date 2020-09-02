@@ -8,4 +8,4 @@
 
 ## Insomnia workspace
 
-`insomnia_workspace.json` contains request templates for all endpoints for quick access, and it should be kept up to date with endpoint changes. Changes are not automatically updated into workspace-file, so when changes are done, export workspace from Insomnia and replace the one in this folder.
+`insomnia_workspace.json` contains request templates for all endpoints for quick access, and it should be kept up to date with endpoint changes. Changes are not automatically updated into workspace-file, so when changes are done, export workspace from Insomnia and replace the one in this folder. It is not necessary to keep workspace up to date every commit, but at least when merging into another branch.

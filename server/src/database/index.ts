@@ -1,6 +1,7 @@
 import Sequelize from "sequelize";
 
 import user from "./user";
+import episode from "./episode";
 
 let sequelize: Sequelize.Sequelize;
 
@@ -16,6 +17,7 @@ try {
 
 const db = {
   User: user(sequelize),
+  Episode: episode(sequelize),
   sequelize,
 };
 

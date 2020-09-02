@@ -1,7 +1,7 @@
 import Sequelize, { Model, DataTypes } from "sequelize";
 
 class User extends Model {
-  id: string;
+  id: number;
   username: string;
   password: string;
 }

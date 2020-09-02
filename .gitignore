@@ -3,5 +3,6 @@ dist
 certificates
 redis_data
 logs
+media
 
 *.env

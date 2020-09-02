@@ -9,8 +9,9 @@ import passportLocal from "passport-local";
 import bcrypt from "bcrypt";
 import * as winston from "winston";
 
-import { userRouter, authRouter } from "./routes";
+import { userRouter, authRouter, episodeRouter } from "./routes";
 import db from "./database";
+import { authenticationMiddleware } from "./utils";
 
 const app = express();
 
@@ -95,6 +96,7 @@ app.use(passport.session());
 // Routing
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/episodes", authenticationMiddleware, episodeRouter);
 
 // Error handling
 const logger = winston.createLogger({

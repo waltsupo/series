@@ -3,11 +3,11 @@ import Sequelize, { Model, DataTypes } from "sequelize";
 class Series extends Model {
   id: number;
   name: string;
-  altNames: string;
-  description: string;
+  altNames?: string;
+  description?: string;
   status: "ongoing" | "finished" | "upcoming";
   coverImg?: string;
-  genres: string;
+  genres?: string;
 }
 
 export default (sequelize: Sequelize.Sequelize) => {
@@ -23,11 +23,9 @@ export default (sequelize: Sequelize.Sequelize) => {
         type: DataTypes.STRING,
       },
       altNames: {
-        allowNull: false,
         type: DataTypes.STRING,
       },
       description: {
-        allowNull: false,
         type: DataTypes.STRING,
       },
       status: {
@@ -38,7 +36,6 @@ export default (sequelize: Sequelize.Sequelize) => {
         type: DataTypes.STRING,
       },
       genres: {
-        allowNull: false,
         type: DataTypes.STRING,
       },
     },

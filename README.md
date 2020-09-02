@@ -13,6 +13,8 @@ Run `sh scripts/create-dev-certificates.sh` to create certificates for TLS. On w
 
 Run `docker volume create --name=series_pgdata` to create persistent volume for database. This fixes a problem on windows machine that postgre container would not have proper permissions to access volume defined in docker-compose.yml.
 
+Until official API integrations are done, you'll need to move .mp4 files under env/media folder to be hosted by nginx. These can be accessed without authentication from `https://localhost/<media-path>`. For example, `test.mp4` directly under media-folder could be accessed from `https://localhost/test.mp4`. Media hosted this way will not have authentication check as this is only a temporal solution to have some media available on the app for development purposes.
+
 Move to `server`-folder and run `npm i`
 
 ## Running in development

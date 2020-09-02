@@ -31,10 +31,11 @@ router.post(
     check("type").isIn(["episode", "special", "movie"]),
     check("link").isString(),
     check("published").optional().isNumeric(),
+    check("seriesId").isNumeric(),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
-    const { title, episodeNumber, type, link, published } = req.body;
+    const { title, episodeNumber, type, link, published, seriesId } = req.body;
 
     try {
       const episode = await db.Episode.create({
@@ -43,9 +44,14 @@ router.post(
         type,
         link,
         published,
+        seriesId,
       });
+
       res.status(201).json({ status: 201, data: episode });
     } catch (error) {
+      if (error.name === "SequelizeForeignKeyConstraintError") {
+        next({ status: 400, error: "Series with given ID does not exist" });
+      }
       next({ status: 500, error });
     }
   }

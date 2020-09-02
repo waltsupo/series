@@ -16,6 +16,21 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+// Get all episodes for a series
+router.get(
+  "/:id/series",
+  [check("id").isNumeric(), validationResultsMiddleware],
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id;
+      const episodes = await db.Episode.findAll({ where: { seriesId: id } });
+      res.status(200).json({ status: 200, data: episodes });
+    } catch (error) {
+      next({ status: 500, error });
+    }
+  }
+);
+
 // Create series
 router.post(
   "/",

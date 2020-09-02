@@ -23,6 +23,11 @@ const db = {
   sequelize,
 };
 
+db.Series.hasMany(db.Episode, {
+  foreignKey: "seriesId",
+  onDelete: "CASCADE",
+});
+
 sequelize.sync();
 
 export default db;

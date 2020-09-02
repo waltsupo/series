@@ -2,6 +2,7 @@ import Sequelize from "sequelize";
 
 import user from "./user";
 import episode from "./episode";
+import series from "./series";
 
 let sequelize: Sequelize.Sequelize;
 
@@ -18,8 +19,14 @@ try {
 const db = {
   User: user(sequelize),
   Episode: episode(sequelize),
+  Series: series(sequelize),
   sequelize,
 };
+
+db.Series.hasMany(db.Episode, {
+  foreignKey: "seriesId",
+  onDelete: "CASCADE",
+});
 
 sequelize.sync();
 

@@ -17,7 +17,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
   episode,
 }: EpisodeCardProps) => {
   const classes = useStyles();
-  console.log(episode);
+
   return (
     <Card className={classes.card}>
       <CardMedia className={classes.cover} image={episode.series?.coverImg} />

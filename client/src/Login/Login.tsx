@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, makeStyles, Typography } from "@material-ui/core";
 
 import { loginRequest } from "../API";
 import { history } from "../App";
 
 const Login: React.FC = () => {
+  const styles = useStyles();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<any>({});
@@ -35,9 +36,10 @@ const Login: React.FC = () => {
   };
 
   return (
-    <LoginForm onSubmit={login}>
-      <Title>Login</Title>
+    <form className={styles.form} onSubmit={login}>
+      <Typography variant="h5">Login</Typography>
       <TextField
+        className={styles.extraMargin}
         id="username"
         label="username"
         required
@@ -48,6 +50,7 @@ const Login: React.FC = () => {
         onChange={(event) => setUsername(event.target.value)}
       />
       <TextField
+        className={styles.extraMargin}
         id="password"
         type="password"
         required
@@ -57,28 +60,29 @@ const Login: React.FC = () => {
         helperText={errors["password"]}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Button type="submit" variant="contained" color="primary">
+      <Button
+        className={styles.extraMargin}
+        type="submit"
+        variant="contained"
+        color="primary"
+      >
         Login
       </Button>
-    </LoginForm>
+    </form>
   );
 };
 
 export default Login;
 
-const LoginForm = styled.form`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  div,
-  button {
-    margin-top: 10px;
-  }
-`;
-
-const Title = styled.div`
-  font-size: 24px;
-`;
+const useStyles = makeStyles(() => ({
+  form: {
+    display: "flex",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  extraMargin: {
+    marginTop: "10px",
+  },
+}));

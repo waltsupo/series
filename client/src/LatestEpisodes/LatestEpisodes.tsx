@@ -4,6 +4,7 @@ import { makeStyles, Typography } from "@material-ui/core";
 import { fetchLatestEpisodes } from "../API";
 import { Episode } from "../types";
 import EpisodeCard from "./EpisodeCard";
+import Navbar from "../common/Navbar";
 
 const LatestEpisodes: React.FC = () => {
   const classes = useStyles();
@@ -34,6 +35,7 @@ const LatestEpisodes: React.FC = () => {
 
   return (
     <div className={classes.container}>
+      <Navbar />
       <Typography variant="h4">Latest episodes</Typography>
       <div className={classes.episodeList}>
         {latest &&

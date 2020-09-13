@@ -14,6 +14,8 @@ const LatestEpisodes: React.FC = () => {
     const getLatest = async () => {
       const response = await fetchLatestEpisodes();
 
+      if (!response.data) return;
+
       // Change published to Date objects
       const episodes = response.data.map((episode: Episode) => {
         if (episode.published) {

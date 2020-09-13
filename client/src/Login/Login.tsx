@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { TextField, Button } from "@material-ui/core";
 
 import { loginRequest } from "../API";
+import { history } from "../App";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -13,17 +14,23 @@ const Login: React.FC = () => {
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault();
-    // Reset errors
-    setErrors({});
 
     const response = await loginRequest(username, password);
 
-    if (response.error) {
+    // If there are any errors with form fields
+    if (Array.isArray(response.error)) {
       const errors: any = {};
       response.error.map((error: any) => (errors[error.param] = error.msg));
       setErrors(errors);
-    } else {
-      // Success
+    }
+    // TODO handle failed login, server error
+    else if (response.status !== 200) {
+      // Reset errors
+      setErrors({});
+    }
+    // User has been logged in
+    else {
+      history.push("/latest");
     }
   };
 

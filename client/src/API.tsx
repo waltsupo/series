@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { history } from "./App";
+
 const baseURL = "https://localhost/api";
 
 interface APIResponse {
@@ -22,8 +24,11 @@ const sendRequest = async (
   try {
     return await axios.request<APIResponse>(options);
   } catch (error) {
-    if (error.response && error.response.status == 401) {
-      // TODO: Handle auth error  (redirect to login)
+    if (error.response && error.response.status === 401) {
+      // Navigate user to login view for authentication
+      if (history.location.pathname !== "/login") {
+        history.push("/login");
+      }
       return error.response.data;
     } else {
       return error.response.data;

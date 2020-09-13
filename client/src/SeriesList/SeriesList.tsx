@@ -6,7 +6,7 @@ import { Series } from "../types";
 import Navbar from "../common/Navbar";
 import SeriesCard from "./SeriesCard";
 
-const LatestEpisodes: React.FC = () => {
+const SeriesList: React.FC = () => {
   const classes = useStyles();
 
   const [series, setSeries] = useState<Series[]>([]);
@@ -34,7 +34,7 @@ const LatestEpisodes: React.FC = () => {
   );
 };
 
-export default LatestEpisodes;
+export default SeriesList;
 
 const useStyles = makeStyles(() => ({
   container: {

@@ -21,6 +21,17 @@ services:
       - 443:443
     networks:
       - app
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ../client
+    image: series_client
+    container_name: series_client
+    volumes:
+      - ../client:/app
+    networks:
+      - app
+    stdin_open: true
   backend:
     build:
       dockerfile: Dockerfile.dev

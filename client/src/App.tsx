@@ -9,8 +9,6 @@ export const history = createBrowserHistory();
 
 const NoMatch = () => <Redirect to="/latest" />;
 
-setTimeout(() => console.log(history.location.pathname), 5000);
-
 const App: React.FC = () => {
   return (
     <Router history={history}>

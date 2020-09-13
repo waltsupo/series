@@ -42,3 +42,7 @@ export const loginRequest = async (
 export const fetchLatestEpisodes = async (): Promise<APIResponse> => {
   return sendRequest("GET", "/episodes/latest");
 };
+
+export const fetchSeries = async (): Promise<APIResponse> => {
+  return sendRequest("GET", "/series");
+};

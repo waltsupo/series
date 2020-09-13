@@ -4,6 +4,7 @@ import { Router, Route, Redirect, Switch } from "react-router-dom";
 
 import Login from "./Login";
 import LatestEpisodes from "./LatestEpisodes";
+import Series from "./Series";
 
 export const history = createBrowserHistory();
 
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/latest" component={LatestEpisodes} />
+        <Route path="/series" component={Series} />
         <Route component={NoMatch} />
       </Switch>
     </Router>

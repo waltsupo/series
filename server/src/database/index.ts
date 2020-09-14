@@ -28,6 +28,8 @@ db.Series.hasMany(db.Episode, {
   onDelete: "CASCADE",
 });
 
+db.Episode.belongsTo(db.Series);
+
 sequelize.sync();
 
 export default db;

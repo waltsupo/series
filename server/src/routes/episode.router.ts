@@ -6,14 +6,15 @@ import { validationResultsMiddleware, filterEmptyValues } from "../utils";
 
 const router = express.Router();
 
-// Get 5 latest episodes
+// Get 40 latest episodes
 router.get(
   "/latest",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const episodes = await db.Episode.findAll({
-        limit: 5,
+        limit: 40,
         order: [["published", "DESC"]],
+        include: db.Series,
       });
       res.status(200).json({ status: 200, data: episodes });
     } catch (error) {

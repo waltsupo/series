@@ -30,3 +30,26 @@ In project root folder:
 ## Running in production
 
 Production guidelines and configurations coming soon
+
+## Upcoming changes
+
+### v1.0.1
+
+Codebase styling - Add proper linting to project
+
+### v1.0.2
+
+Fixes to main functionalities - proper ordering of series and episodes based on their release dates, alphabetical order
+
+### v1.0.3
+
+Client visual improvements
+
+### v1.0.4
+
+Add guidelines and required configurations for running Series in production
+
+### TBD
+
+- Implement search
+- Tests

@@ -2,7 +2,10 @@ import express, { Request, Response, NextFunction } from "express";
 import { check } from "express-validator";
 import passport from "passport";
 
-import { validationResultsMiddleware } from "../utils";
+import {
+  validationResultsMiddleware,
+  authenticationMiddleware,
+} from "../utils";
 
 const router = express.Router();
 
@@ -32,12 +35,21 @@ router.post(
 
       req.login(user, (err) => {
         if (!err) {
-          res.status(200).json({ status: 200 });
+          res.status(200).json({ status: 200, data: user });
         } else {
           next({ status: 500, error });
         }
       });
     })(req, res, next);
+  }
+);
+
+// Check if authenticated
+router.get(
+  "/checkauth",
+  [authenticationMiddleware],
+  async (req: Request, res: Response) => {
+    res.status(200).json({ status: 200, data: req.user });
   }
 );
 

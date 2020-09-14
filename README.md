@@ -17,10 +17,16 @@ Until official API integrations are done, you'll need to move .mp4 files under e
 
 Move to `server`-folder and run `npm i`
 
+Move to `client`-folder and run `npm i`
+
 ## Running in development
 
 In project root folder:
 
-`docker-compose -f env/docker-compose.dev.yml up -d` to start up development server
+`docker-compose -f env/docker-compose.dev.yml up` to start up development server (add `-d`-flag to end if you wan to run containers in detached mode)
 
 `docker-compose -f env/docker-compose.dev.yml down` to shutdown development server
+
+## Running in production
+
+Production guidelines and configurations coming soon

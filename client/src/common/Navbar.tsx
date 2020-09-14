@@ -50,6 +50,7 @@ export default Navbar;
 const useStyles = makeStyles(() => ({
   container: {
     heigh: "50px",
+    marginBottom: "10px",
   },
   active: {
     color: "white",

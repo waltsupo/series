@@ -46,3 +46,13 @@ export const fetchLatestEpisodes = async (): Promise<APIResponse> => {
 export const fetchSeries = async (): Promise<APIResponse> => {
   return sendRequest("GET", "/series");
 };
+
+export const fetchSingleSeries = async (id: number): Promise<APIResponse> => {
+  return sendRequest("GET", `/series/${id}`);
+};
+
+export const fetchEpisodesForSeries = async (
+  id: number
+): Promise<APIResponse> => {
+  return sendRequest("GET", `/series/${id}/episodes`);
+};

@@ -6,7 +6,8 @@
     "baseUrl": "./src",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strictPropertyInitialization": false
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules"]

@@ -1,0 +1,72 @@
+version: "3.6"
+
+networks:
+  app:
+  services:
+
+volumes:
+  series_pgdata:
+    external: true
+
+services:
+  nginx:
+    image: nginx:1.19
+    container_name: series_nginx
+    volumes:
+      - ../certificates/nginx.key:/etc/nginx/certificates/nginx.key
+      - ../certificates/nginx.crt:/etc/nginx/certificates/nginx.crt
+      - ./nginx.dev.conf:/etc/nginx/conf.d/default.conf
+      - ./media:/www/media
+    ports:
+      - 443:443
+    networks:
+      - app
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ../client
+    image: series_client
+    container_name: series_client
+    volumes:
+      - ../client:/app
+    networks:
+      - app
+    stdin_open: true
+  backend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ../server
+    image: series_backend
+    container_name: series_backend
+    volumes:
+      - ./logs:/var/log/series
+      - ../server:/app
+      # -----------------------------------
+      # Fix for bcrypt
+      # Bcrypt needs to be built on the system it will run on
+      # For example running `npm i` on windows machine and using that bcrypt library on linux container will not work
+      # On docker build, install all dependencies and when running, replace everything else with the ones in dev environment
+      # This binds empty location from host to bcrypt-location inside docker, excluding it from the volume above
+      - /app/node_modules/bcrypt
+      # -----------------------------------
+    env_file:
+      - backend.env
+    networks:
+      - app
+      - services
+  postgresql:
+    image: postgres:13
+    container_name: series_db
+    env_file:
+      - postgresql.env
+    volumes:
+      - series_pgdata:/var/lib/postgresql/data
+    networks:
+      - services
+  redis:
+    image: redis:6
+    container_name: series_redis
+    volumes:
+      - ./redis_data:/data
+    networks:
+      - services

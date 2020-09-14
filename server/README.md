@@ -1,20 +1,11 @@
 # Series-backend
 
-## Technologies / Libraries
+## Libraries used
 
 - Node with Express
-- Sequelize to handle database connection
 - TypeScript
+- Sequelize to handle database connection
 
-## Requirements
+## Insomnia workspace
 
-- Node LTS
-- Docker, docker-compose
-
-## Setup
-
-Run `scripts/setup_env.sh` to configure environment variables
-
-## Running in development
-
-`npm start` to start up development server
+`insomnia_workspace.json` contains request templates for all endpoints for quick access, and it should be kept up to date with endpoint changes. Changes are not automatically updated into workspace-file, so when changes are done, export workspace from Insomnia and replace the one in this folder. It is not necessary to keep workspace up to date every commit, but at least when merging into another branch.

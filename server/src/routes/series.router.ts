@@ -33,7 +33,7 @@ router.get(
 
 // Get all episodes for a series
 router.get(
-  "/:id/series",
+  "/:id/episodes",
   [check("id").isNumeric(), validationResultsMiddleware],
   async (req: Request, res: Response, next: NextFunction) => {
     try {

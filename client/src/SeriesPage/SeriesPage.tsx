@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, Grid, Container } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import { fetchSingleSeries, fetchEpisodesForSeries } from "../API";
 import { Series, Episode } from "../types";
@@ -17,7 +17,9 @@ const SeriesPage: React.FC = () => {
   const [selectedEpisode, setSelectedEpisode] = useState(0);
 
   const { seriesId } = useParams();
+  const location = useLocation();
 
+  // Effect to fetch series and episode information
   useEffect(() => {
     const getSeries = async () => {
       const responses = await Promise.all([
@@ -31,6 +33,20 @@ const SeriesPage: React.FC = () => {
 
     getSeries();
   }, [seriesId]);
+
+  // Effect that sets selected episode if defined
+  useEffect(() => {
+    if (!location.state) return;
+
+    const { episodeId } = location.state as any;
+    if (episodeId) {
+      episodes.map((episode, index) => {
+        if (episode.id === episodeId) {
+          setSelectedEpisode(index);
+        }
+      });
+    }
+  }, [location, episodes]);
 
   return (
     <div className={classes.container}>

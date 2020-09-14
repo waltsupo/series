@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 
 import { Episode } from "../types";
+import { Link } from "react-router-dom";
 
 interface EpisodeCardProps {
   episode: Episode;
@@ -19,19 +20,26 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardMedia className={classes.cover} image={episode.series?.coverImg} />
-      <div className={classes.details}>
-        <CardContent>
-          {episode.published && (
-            <Typography variant="caption">{`${episode.published.getDate()}.${episode.published.getMonth()}.${episode.published.getFullYear()}`}</Typography>
-          )}
+    <Link
+      to={{
+        pathname: `/series/${episode.series?.id}`,
+        state: { episodeId: episode.id },
+      }}
+    >
+      <Card className={classes.card}>
+        <CardMedia className={classes.cover} image={episode.series?.coverImg} />
+        <div className={classes.details}>
+          <CardContent>
+            {episode.published && (
+              <Typography variant="caption">{`${episode.published.getDate()}.${episode.published.getMonth()}.${episode.published.getFullYear()}`}</Typography>
+            )}
 
-          <Typography variant="h6">{`${episode.series?.name}\n(Episode ${episode.episodeNumber})`}</Typography>
-          <Typography variant="subtitle2">{episode.title}</Typography>
-        </CardContent>
-      </div>
-    </Card>
+            <Typography variant="h6">{`${episode.series?.name}\n(Episode ${episode.episodeNumber})`}</Typography>
+            <Typography variant="subtitle2">{episode.title}</Typography>
+          </CardContent>
+        </div>
+      </Card>
+    </Link>
   );
 };
 

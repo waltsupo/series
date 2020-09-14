@@ -59,5 +59,6 @@ const useStyles = makeStyles(() => ({
   episodeList: {
     display: "flex",
     flexDirection: "row",
+    flexWrap: "wrap",
   },
 }));

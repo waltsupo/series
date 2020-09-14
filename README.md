@@ -33,6 +33,8 @@ Production guidelines and configurations coming soon
 
 ## Upcoming changes
 
+Planned updates, version numbers and content might change
+
 ### v1.0.1
 
 Codebase styling - Add proper linting to project

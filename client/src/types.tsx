@@ -1,3 +1,8 @@
+export interface User {
+  id: number;
+  username: string;
+}
+
 export interface Series {
   id: number;
   name: string;

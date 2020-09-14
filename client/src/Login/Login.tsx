@@ -3,6 +3,7 @@ import { TextField, Button, makeStyles, Typography } from "@material-ui/core";
 
 import { loginRequest } from "../API";
 import { history } from "../App";
+import useStore from "../store";
 
 const Login: React.FC = () => {
   const styles = useStyles();
@@ -10,6 +11,7 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<any>({});
+  const setUser = useStore((state) => state.setUser);
 
   const login = async (
     event: React.FormEvent<HTMLFormElement>
@@ -31,6 +33,7 @@ const Login: React.FC = () => {
     }
     // User has been logged in
     else {
+      setUser(response.data);
       history.push("/latest");
     }
   };
@@ -76,6 +79,8 @@ export default Login;
 
 const useStyles = makeStyles(() => ({
   form: {
+    width: "100%",
+    height: "100%",
     display: "flex",
     flex: 1,
     alignItems: "center",

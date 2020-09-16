@@ -19,6 +19,20 @@ Move to `server`-folder and run `npm i`
 
 Move to `client`-folder and run `npm i`
 
+### Linting
+
+- Install Prettier and TSLint extensions
+- Edit VSCode settings:
+  ```
+  {
+    "editor.formatOnSave": true
+    "prettier.tslintIntegration": true,
+    "prettier.eslintIntegration": true,
+    "prettier.jsxSingleQuote": false,
+    "prettier.singleQuote": true,
+  }
+  ```
+
 ## Running in development
 
 In project root folder:

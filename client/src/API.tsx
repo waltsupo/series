@@ -1,15 +1,15 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { history } from "./App";
-import { APIResponse } from "./types";
-import useStore from "./store";
+import { history } from './App';
+import { APIResponse } from './types';
+import useStore from './store';
 
-const baseURL = "https://localhost/api";
+const baseURL = 'https://localhost/api';
 
 const sendRequest = async (
-  method: "POST" | "GET" | "PATCH" | "DELETE",
+  method: 'POST' | 'GET' | 'PATCH' | 'DELETE',
   endpoint: string,
-  data?: Object
+  data?: object
 ): Promise<APIResponse> => {
   const options = {
     url: baseURL + endpoint,
@@ -23,9 +23,9 @@ const sendRequest = async (
   } catch (error) {
     if (error.response && error.response.status === 401) {
       // Navigate user to login view for authentication
-      if (history.location.pathname !== "/login") {
+      if (history.location.pathname !== '/login') {
         useStore.getState().setUser(undefined);
-        history.push("/login");
+        history.push('/login');
       }
       return error.response.data;
     } else {
@@ -34,35 +34,30 @@ const sendRequest = async (
   }
 };
 
-export const loginRequest = async (
-  username: string,
-  password: string
-): Promise<APIResponse> => {
-  return sendRequest("POST", "/auth/login", { username, password });
+export const loginRequest = async (username: string, password: string): Promise<APIResponse> => {
+  return sendRequest('POST', '/auth/login', { username, password });
 };
 
 export const checkAuthRequest = async (): Promise<APIResponse> => {
-  return sendRequest("GET", "/auth/checkauth");
+  return sendRequest('GET', '/auth/checkauth');
 };
 
 export const logoutRequest = async (): Promise<APIResponse> => {
-  return sendRequest("GET", "/auth/logout");
+  return sendRequest('GET', '/auth/logout');
 };
 
 export const fetchLatestEpisodes = async (): Promise<APIResponse> => {
-  return sendRequest("GET", "/episodes/latest");
+  return sendRequest('GET', '/episodes/latest');
 };
 
 export const fetchSeries = async (): Promise<APIResponse> => {
-  return sendRequest("GET", "/series");
+  return sendRequest('GET', '/series');
 };
 
 export const fetchSingleSeries = async (id: number): Promise<APIResponse> => {
-  return sendRequest("GET", `/series/${id}`);
+  return sendRequest('GET', `/series/${id}`);
 };
 
-export const fetchEpisodesForSeries = async (
-  id: number
-): Promise<APIResponse> => {
-  return sendRequest("GET", `/series/${id}/episodes`);
+export const fetchEpisodesForSeries = async (id: number): Promise<APIResponse> => {
+  return sendRequest('GET', `/series/${id}/episodes`);
 };

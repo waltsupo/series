@@ -1,13 +1,7 @@
-import React from "react";
-import {
-  makeStyles,
-  Typography,
-  GridList,
-  GridListTile,
-  Button,
-} from "@material-ui/core";
+import React from 'react';
+import { makeStyles, Typography, GridList, GridListTile, Button } from '@material-ui/core';
 
-import { Episode } from "../types";
+import { Episode } from '../types';
 
 interface EpisodeListProps {
   episodes: Episode[];
@@ -25,12 +19,7 @@ const EpisodeList: React.FC<EpisodeListProps> = ({
   return (
     <div className={styles.container}>
       <Typography variant="h6">Episodes:</Typography>
-      <GridList
-        cellHeight={"auto"}
-        cols={5}
-        spacing={10}
-        className={styles.list}
-      >
+      <GridList cellHeight={'auto'} cols={5} spacing={10} className={styles.list}>
         {episodes.map((episode, index) => (
           <GridListTile key={episode.id} cols={1} rows={1}>
             <Button
@@ -54,28 +43,28 @@ export default EpisodeList;
 
 const useStyles = makeStyles(() => ({
   container: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "column",
-    justifyContent: "space-around",
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
   },
   list: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   episode: {
-    width: "100%",
-    height: "100%",
-    textTransform: "none",
-    textAlign: "center",
-    display: "inline-block",
-    border: "1px solid white",
+    width: '100%',
+    height: '100%',
+    textTransform: 'none',
+    textAlign: 'center',
+    display: 'inline-block',
+    border: '1px solid white',
   },
   active: {
-    width: "100%",
-    height: "100%",
-    textTransform: "none",
-    textAlign: "center",
-    border: "1px solid black",
-    display: "inline-block",
+    width: '100%',
+    height: '100%',
+    textTransform: 'none',
+    textAlign: 'center',
+    border: '1px solid black',
+    display: 'inline-block',
   },
 }));

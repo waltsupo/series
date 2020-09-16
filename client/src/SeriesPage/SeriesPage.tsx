@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles, Grid, Container } from "@material-ui/core";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { makeStyles, Grid, Container } from '@material-ui/core';
+import { useParams, useLocation } from 'react-router-dom';
 
-import { fetchSingleSeries, fetchEpisodesForSeries } from "../API";
-import { Series, Episode } from "../types";
-import Navbar from "../common/Navbar";
-import Player from "./Player";
-import SeriesDetails from "./SeriesDetails";
-import EpisodeList from "./EpisodeList";
+import { fetchSingleSeries, fetchEpisodesForSeries } from '../API';
+import { Series, Episode } from '../types';
+import Navbar from '../common/Navbar';
+import Player from './Player';
+import SeriesDetails from './SeriesDetails';
+import EpisodeList from './EpisodeList';
 
 const SeriesPage: React.FC = () => {
-  const classes = useStyles();
+  const styles = useStyles();
 
   const [series, setSeries] = useState<Series>();
   const [episodes, setEpisodes] = useState<Episode[]>([]);
@@ -36,7 +36,9 @@ const SeriesPage: React.FC = () => {
 
   // Effect that sets selected episode if defined
   useEffect(() => {
-    if (!location.state) return;
+    if (!location.state) {
+      return;
+    }
 
     const { episodeId } = location.state as any;
     if (episodeId) {
@@ -49,7 +51,7 @@ const SeriesPage: React.FC = () => {
   }, [location, episodes]);
 
   return (
-    <div className={classes.container}>
+    <div className={styles.container}>
       <Navbar />
       {series && (
         <Container>
@@ -61,9 +63,7 @@ const SeriesPage: React.FC = () => {
               <SeriesDetails series={series} />
             </Grid>
             <Grid item xs={5}>
-              {episodes[selectedEpisode] && (
-                <Player media={episodes[selectedEpisode].link} />
-              )}
+              {episodes[selectedEpisode] && <Player media={episodes[selectedEpisode].link} />}
             </Grid>
           </Grid>
           <Grid container spacing={3}>
@@ -86,8 +86,8 @@ export default SeriesPage;
 
 const useStyles = makeStyles(() => ({
   container: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     flex: 1,
   },
 }));

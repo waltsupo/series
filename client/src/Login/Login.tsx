@@ -1,30 +1,28 @@
-import React, { useState } from "react";
-import { TextField, Button, makeStyles, Typography } from "@material-ui/core";
+import React, { useState } from 'react';
+import { TextField, Button, makeStyles, Typography } from '@material-ui/core';
 
-import { loginRequest } from "../API";
-import { history } from "../App";
-import useStore from "../store";
+import { loginRequest } from '../API';
+import { history } from '../App';
+import useStore from '../store';
 
 const Login: React.FC = () => {
   const styles = useStyles();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<any>({});
   const setUser = useStore((state) => state.setUser);
 
-  const login = async (
-    event: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  const login = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
     const response = await loginRequest(username, password);
 
     // If there are any errors with form fields
     if (Array.isArray(response.error)) {
-      const errors: any = {};
-      response.error.map((error: any) => (errors[error.param] = error.msg));
-      setErrors(errors);
+      const newErrors: any = {};
+      response.error.map((error: any) => (newErrors[error.param] = error.msg));
+      setErrors(newErrors);
     }
     // TODO handle failed login, server error
     else if (response.status !== 200) {
@@ -34,7 +32,7 @@ const Login: React.FC = () => {
     // User has been logged in
     else {
       setUser(response.data);
-      history.push("/latest");
+      history.push('/latest');
     }
   };
 
@@ -48,8 +46,8 @@ const Login: React.FC = () => {
         required
         value={username}
         autoFocus
-        error={!!errors["username"]}
-        helperText={errors["username"]}
+        error={!!errors.username}
+        helperText={errors.username}
         onChange={(event) => setUsername(event.target.value)}
       />
       <TextField
@@ -59,16 +57,11 @@ const Login: React.FC = () => {
         required
         label="password"
         value={password}
-        error={!!errors["password"]}
-        helperText={errors["password"]}
+        error={!!errors.password}
+        helperText={errors.password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Button
-        className={styles.extraMargin}
-        type="submit"
-        variant="contained"
-        color="primary"
-      >
+      <Button className={styles.extraMargin} type="submit" variant="contained" color="primary">
         Login
       </Button>
     </form>
@@ -79,15 +72,15 @@ export default Login;
 
 const useStyles = makeStyles(() => ({
   form: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
+    width: '100%',
+    height: '100%',
+    display: 'flex',
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
   extraMargin: {
-    marginTop: "10px",
+    marginTop: '10px',
   },
 }));

@@ -8,7 +8,7 @@ export interface Series {
   name: string;
   altNames?: string;
   description?: string;
-  status: "ongoing" | "finished" | "upcoming";
+  status: 'ongoing' | 'finished' | 'upcoming';
   coverImg?: string;
   genres?: string;
 }
@@ -17,7 +17,7 @@ export interface Episode {
   id: number;
   title: string;
   episodeNumber: number;
-  type: "episode" | "special" | "movie";
+  type: 'episode' | 'special' | 'movie';
   link: string;
   published?: Date;
   series?: Series;

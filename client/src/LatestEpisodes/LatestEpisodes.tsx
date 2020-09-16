@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles, Typography } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import { makeStyles, Typography } from '@material-ui/core';
 
-import { fetchLatestEpisodes } from "../API";
-import { Episode } from "../types";
-import EpisodeCard from "./EpisodeCard";
-import Navbar from "../common/Navbar";
+import { fetchLatestEpisodes } from '../API';
+import { Episode } from '../types';
+import EpisodeCard from './EpisodeCard';
+import Navbar from '../common/Navbar';
 
 const LatestEpisodes: React.FC = () => {
   const classes = useStyles();
@@ -15,7 +15,9 @@ const LatestEpisodes: React.FC = () => {
     const getLatest = async () => {
       const response = await fetchLatestEpisodes();
 
-      if (!response.data) return;
+      if (!response.data) {
+        return;
+      }
 
       // Change published to Date objects
       const episodes = response.data.map((episode: Episode) => {
@@ -38,10 +40,7 @@ const LatestEpisodes: React.FC = () => {
       <Navbar />
       <Typography variant="h4">Latest episodes</Typography>
       <div className={classes.episodeList}>
-        {latest &&
-          latest.map((episode) => (
-            <EpisodeCard key={episode.id} episode={episode} />
-          ))}
+        {latest && latest.map((episode) => <EpisodeCard key={episode.id} episode={episode} />)}
       </div>
     </div>
   );
@@ -51,14 +50,14 @@ export default LatestEpisodes;
 
 const useStyles = makeStyles(() => ({
   container: {
-    display: "flex",
+    display: 'flex',
     flex: 1,
-    alignItems: "center",
-    flexDirection: "column",
+    alignItems: 'center',
+    flexDirection: 'column',
   },
   episodeList: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 }));

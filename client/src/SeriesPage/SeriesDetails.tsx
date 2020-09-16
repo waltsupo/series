@@ -1,15 +1,13 @@
-import React from "react";
-import { makeStyles, Typography } from "@material-ui/core";
+import React from 'react';
+import { Typography } from '@material-ui/core';
 
-import { Series } from "../types";
+import { Series } from '../types';
 
 interface SeriesDetailsProps {
   series: Series;
 }
 
-const SeriesDetails: React.FC<SeriesDetailsProps> = ({
-  series,
-}: SeriesDetailsProps) => {
+const SeriesDetails: React.FC<SeriesDetailsProps> = ({ series }: SeriesDetailsProps) => {
   return (
     <div>
       <Typography variant="h4">{series.name}</Typography>

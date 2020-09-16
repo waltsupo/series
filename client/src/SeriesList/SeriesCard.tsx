@@ -1,14 +1,8 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import React from 'react';
+import { Card, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
 
-import { Series } from "../types";
-import { Link } from "react-router-dom";
+import { Series } from '../types';
+import { Link } from 'react-router-dom';
 
 interface SeriesCardProps {
   series: Series;
@@ -36,16 +30,16 @@ export default SeriesCard;
 
 const useStyles = makeStyles(() => ({
   card: {
-    display: "flex",
-    width: "300px",
-    margin: "30px",
+    display: 'flex',
+    width: '300px',
+    margin: '30px',
   },
   details: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   cover: {
-    width: "100px",
+    width: '100px',
   },
 }));

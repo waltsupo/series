@@ -1,15 +1,9 @@
-import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  makeStyles,
-  Typography,
-  Button,
-} from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import React from 'react';
+import { AppBar, Toolbar, makeStyles, Typography, Button } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
 
-import useStore from "../store";
-import { logoutRequest } from "../API";
+import useStore from '../store';
+import { logoutRequest } from '../API';
 
 const Navbar: React.FC = () => {
   const styles = useStyles();
@@ -20,7 +14,7 @@ const Navbar: React.FC = () => {
   const logout = async () => {
     await logoutRequest();
     setUser(undefined);
-    history.push("/login");
+    history.push('/login');
   };
 
   return (
@@ -29,11 +23,7 @@ const Navbar: React.FC = () => {
         <div>
           <Link to="/latest">
             <Button
-              className={
-                history.location.pathname === "/latest"
-                  ? styles.active
-                  : styles.nav
-              }
+              className={history.location.pathname === '/latest' ? styles.active : styles.nav}
               variant="outlined"
             >
               <Typography className={styles.title}>Latest</Typography>
@@ -41,11 +31,7 @@ const Navbar: React.FC = () => {
           </Link>
           <Link to="/series">
             <Button
-              className={
-                history.location.pathname === "/series"
-                  ? styles.active
-                  : styles.nav
-              }
+              className={history.location.pathname === '/series' ? styles.active : styles.nav}
               variant="outlined"
             >
               <Typography className={styles.title}>Series</Typography>
@@ -64,21 +50,21 @@ export default Navbar;
 
 const useStyles = makeStyles(() => ({
   container: {
-    heigh: "50px",
-    marginBottom: "10px",
+    heigh: '50px',
+    marginBottom: '10px',
   },
   active: {
-    color: "white",
-    borderColor: "white",
+    color: 'white',
+    borderColor: 'white',
   },
   nav: {
-    color: "white",
-    border: "none",
+    color: 'white',
+    border: 'none',
   },
   title: {
-    textDecoration: "none",
+    textDecoration: 'none',
   },
   toolbar: {
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
 }));

@@ -3,6 +3,9 @@
   "rulesDirectory": ["tslint-plugin-prettier"],
   "rules": {
     "prettier": true,
-    "interface-name": false
+    "interface-name": false,
+    "curly": true,
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false
   }
 }

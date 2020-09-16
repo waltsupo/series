@@ -9,7 +9,7 @@ interface EpisodeCardProps {
 }
 
 const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode }: EpisodeCardProps) => {
-  const classes = useStyles();
+  const styles = useStyles();
 
   return (
     <Link
@@ -18,9 +18,9 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode }: EpisodeCardProps) 
         state: { episodeId: episode.id },
       }}
     >
-      <Card className={classes.card}>
-        <CardMedia className={classes.cover} image={episode.series?.coverImg} />
-        <div className={classes.details}>
+      <Card className={styles.card}>
+        <CardMedia className={styles.cover} image={episode.series?.coverImg} />
+        <div className={styles.details}>
           <CardContent>
             {episode.published && (
               <Typography variant="caption">{`${episode.published.getDate()}.${episode.published.getMonth()}.${episode.published.getFullYear()}`}</Typography>

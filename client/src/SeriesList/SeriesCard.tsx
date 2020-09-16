@@ -9,13 +9,13 @@ interface SeriesCardProps {
 }
 
 const SeriesCard: React.FC<SeriesCardProps> = ({ series }: SeriesCardProps) => {
-  const classes = useStyles();
+  const styles = useStyles();
 
   return (
     <Link to={`/series/${series.id}`}>
-      <Card className={classes.card}>
-        <CardMedia className={classes.cover} image={series.coverImg} />
-        <div className={classes.details}>
+      <Card className={styles.card}>
+        <CardMedia className={styles.cover} image={series.coverImg} />
+        <div className={styles.details}>
           <CardContent>
             <Typography variant="h6">{series.name}</Typography>
             <Typography variant="subtitle2">{series.altNames}</Typography>

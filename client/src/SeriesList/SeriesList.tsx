@@ -7,7 +7,7 @@ import Navbar from '../common/Navbar';
 import SeriesCard from './SeriesCard';
 
 const SeriesList: React.FC = () => {
-  const classes = useStyles();
+  const styles = useStyles();
 
   const [series, setSeries] = useState<Series[]>([]);
 
@@ -26,10 +26,10 @@ const SeriesList: React.FC = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
+    <div className={styles.container}>
       <Navbar />
       <Typography variant="h4">Series</Typography>
-      <div className={classes.seriesList}>
+      <div className={styles.seriesList}>
         {series && series.map((s) => <SeriesCard key={s.id} series={s} />)}
       </div>
     </div>

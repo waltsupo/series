@@ -7,7 +7,7 @@ import EpisodeCard from './EpisodeCard';
 import Navbar from '../common/Navbar';
 
 const LatestEpisodes: React.FC = () => {
-  const classes = useStyles();
+  const styles = useStyles();
 
   const [latest, setLatest] = useState<Episode[]>([]);
 
@@ -36,10 +36,10 @@ const LatestEpisodes: React.FC = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
+    <div className={styles.container}>
       <Navbar />
       <Typography variant="h4">Latest episodes</Typography>
-      <div className={classes.episodeList}>
+      <div className={styles.episodeList}>
         {latest && latest.map((episode) => <EpisodeCard key={episode.id} episode={episode} />)}
       </div>
     </div>

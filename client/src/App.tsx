@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { createBrowserHistory } from "history";
-import { Router, Route, Redirect, Switch, RouteProps } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { createBrowserHistory } from 'history';
+import { Router, Route, Redirect, Switch, RouteProps } from 'react-router-dom';
 
-import Login from "./Login";
-import LatestEpisodes from "./LatestEpisodes";
-import SeriesList from "./SeriesList";
-import SeriesPage from "./SeriesPage";
-import useStore from "./store";
-import { checkAuthRequest } from "./API";
+import Login from './Login';
+import LatestEpisodes from './LatestEpisodes';
+import SeriesList from './SeriesList';
+import SeriesPage from './SeriesPage';
+import useStore from './store';
+import { checkAuthRequest } from './API';
 
 export const history = createBrowserHistory();
 
@@ -46,9 +46,9 @@ const AuthWrapper = ({
     }
   }, []);
 
-  if (isAuthenticated == 2) {
+  if (isAuthenticated === 2) {
     return <Component {...routeProps} />;
-  } else if (isAuthenticated == 1) {
+  } else if (isAuthenticated === 1) {
     return <Redirect to="/login" />;
   } else {
     // TODO: Loading indicator
@@ -64,22 +64,16 @@ const App: React.FC = () => {
         <Route
           exact
           path="/latest"
-          render={(props) => (
-            <AuthWrapper Component={LatestEpisodes} routeProps={props} />
-          )}
+          render={(props) => <AuthWrapper Component={LatestEpisodes} routeProps={props} />}
         />
         <Route
           exact
           path="/series"
-          render={(props) => (
-            <AuthWrapper Component={SeriesList} routeProps={props} />
-          )}
+          render={(props) => <AuthWrapper Component={SeriesList} routeProps={props} />}
         />
         <Route
           path="/series/:seriesId"
-          render={(props) => (
-            <AuthWrapper Component={SeriesPage} routeProps={props} />
-          )}
+          render={(props) => <AuthWrapper Component={SeriesPage} routeProps={props} />}
         />
         <Route component={NoMatch} />
       </Switch>

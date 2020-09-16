@@ -1,4 +1,4 @@
-import Sequelize, { Model, DataTypes } from "sequelize";
+import Sequelize, { Model, DataTypes } from 'sequelize';
 
 class User extends Model {
   id: number;
@@ -26,16 +26,16 @@ export default (sequelize: Sequelize.Sequelize) => {
     },
     {
       defaultScope: {
-        attributes: ["id", "username"],
+        attributes: ['id', 'username'],
       },
       scopes: {
         // Used for sessions and authentication
         auth: {
-          attributes: ["id", "username", "password"],
+          attributes: ['id', 'username', 'password'],
         },
       },
       sequelize,
-      modelName: "user",
+      modelName: 'user',
     }
   );
 

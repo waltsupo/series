@@ -1,23 +1,15 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import React from 'react';
+import { Card, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
-import { Episode } from "../types";
-import { Link } from "react-router-dom";
+import { Episode } from '../types';
 
 interface EpisodeCardProps {
   episode: Episode;
 }
 
-const EpisodeCard: React.FC<EpisodeCardProps> = ({
-  episode,
-}: EpisodeCardProps) => {
-  const classes = useStyles();
+const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode }: EpisodeCardProps) => {
+  const styles = useStyles();
 
   return (
     <Link
@@ -26,9 +18,9 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
         state: { episodeId: episode.id },
       }}
     >
-      <Card className={classes.card}>
-        <CardMedia className={classes.cover} image={episode.series?.coverImg} />
-        <div className={classes.details}>
+      <Card className={styles.card}>
+        <CardMedia className={styles.cover} image={episode.series?.coverImg} />
+        <div className={styles.details}>
           <CardContent>
             {episode.published && (
               <Typography variant="caption">{`${episode.published.getDate()}.${episode.published.getMonth()}.${episode.published.getFullYear()}`}</Typography>
@@ -47,16 +39,16 @@ export default EpisodeCard;
 
 const useStyles = makeStyles(() => ({
   card: {
-    display: "flex",
-    width: "300px",
-    margin: "30px",
+    display: 'flex',
+    width: '300px',
+    margin: '30px',
   },
   details: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   cover: {
-    width: "100px",
+    width: '100px',
   },
 }));

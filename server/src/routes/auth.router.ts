@@ -1,30 +1,25 @@
-import express, { Request, Response, NextFunction } from "express";
-import { check } from "express-validator";
-import passport from "passport";
+import express, { Request, Response, NextFunction } from 'express';
+import { check } from 'express-validator';
+import passport from 'passport';
 
-import {
-  validationResultsMiddleware,
-  authenticationMiddleware,
-} from "../utils";
+import { validationResultsMiddleware, authenticationMiddleware } from '../utils';
 
 const router = express.Router();
 
 // Login
 router.post(
-  "/login",
+  '/login',
   [
-    check("username")
-      .isLength({ min: 4 })
-      .withMessage("Username must be at least 4 characters"),
-    check("password")
+    check('username').isLength({ min: 4 }).withMessage('Username must be at least 4 characters'),
+    check('password')
       .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 characters")
+      .withMessage('Password must be at least 6 characters')
       .isLength({ max: 72 })
-      .withMessage("Password must be under 72 characters"),
+      .withMessage('Password must be under 72 characters'),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
-    passport.authenticate("local", (error, user) => {
+    passport.authenticate('local', (error, user) => {
       if (error) {
         if (error.status) {
           return next(error);
@@ -45,16 +40,12 @@ router.post(
 );
 
 // Check if authenticated
-router.get(
-  "/checkauth",
-  [authenticationMiddleware],
-  async (req: Request, res: Response) => {
-    res.status(200).json({ status: 200, data: req.user });
-  }
-);
+router.get('/checkauth', [authenticationMiddleware], async (req: Request, res: Response) => {
+  res.status(200).json({ status: 200, data: req.user });
+});
 
 // Logout
-router.get("/logout", (req: Request, res: Response) => {
+router.get('/logout', (req: Request, res: Response) => {
   req.logout();
   res.status(200).json({ status: 200 });
 });

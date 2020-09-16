@@ -1,21 +1,18 @@
-import express, { Request, Response, NextFunction } from "express";
-import { check } from "express-validator";
-import bcrypt from "bcrypt";
+import express, { Request, Response, NextFunction } from 'express';
+import { check } from 'express-validator';
+import bcrypt from 'bcrypt';
 
-import db from "../database";
-import {
-  authenticationMiddleware,
-  validationResultsMiddleware,
-} from "../utils";
+import db from '../database';
+import { authenticationMiddleware, validationResultsMiddleware } from '../utils';
 
 const router = express.Router();
 
 // Get user
 router.get(
-  "/:id",
+  '/:id',
   [
     authenticationMiddleware,
-    check("id").isInt().withMessage("Id is not a number"),
+    check('id').isInt().withMessage('Id is not a number'),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
@@ -25,7 +22,7 @@ router.get(
       const user = await db.User.findOne({ where: { id } });
 
       if (!user) {
-        return next({ status: 404, error: "User not found" });
+        return next({ status: 404, error: 'User not found' });
       }
 
       res.status(200).json({ status: 200, data: user });
@@ -37,16 +34,14 @@ router.get(
 
 // Create user
 router.post(
-  "/",
+  '/',
   [
-    check("username")
-      .isLength({ min: 4 })
-      .withMessage("Username must be at least 4 characters"),
-    check("password")
+    check('username').isLength({ min: 4 }).withMessage('Username must be at least 4 characters'),
+    check('password')
       .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 characters")
+      .withMessage('Password must be at least 6 characters')
       .isLength({ max: 72 })
-      .withMessage("Password must be 72 or less characters"),
+      .withMessage('Password must be 72 or less characters'),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
@@ -57,8 +52,8 @@ router.post(
       res.status(200).json({ status: 201, data: user });
     } catch (error) {
       // If username is taken
-      if (error.name === "SequelizeUniqueConstraintError") {
-        next({ status: 400, error: "Username not unique" });
+      if (error.name === 'SequelizeUniqueConstraintError') {
+        next({ status: 400, error: 'Username not unique' });
       }
       next({ status: 500, error });
     }

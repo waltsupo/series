@@ -1,13 +1,13 @@
-import express, { Request, Response, NextFunction } from "express";
-import { check } from "express-validator";
+import express, { Request, Response, NextFunction } from 'express';
+import { check } from 'express-validator';
 
-import db from "../database";
-import { validationResultsMiddleware, filterEmptyValues } from "../utils";
+import db from '../database';
+import { validationResultsMiddleware, filterEmptyValues } from '../utils';
 
 const router = express.Router();
 
 // Get all series
-router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const series = await db.Series.findAll();
     res.status(200).json({ status: 200, data: series });
@@ -18,8 +18,8 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 
 // Get single series
 router.get(
-  "/:id",
-  [check("id").isNumeric(), validationResultsMiddleware],
+  '/:id',
+  [check('id').isNumeric(), validationResultsMiddleware],
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = req.params.id;
@@ -33,8 +33,8 @@ router.get(
 
 // Get all episodes for a series
 router.get(
-  "/:id/episodes",
-  [check("id").isNumeric(), validationResultsMiddleware],
+  '/:id/episodes',
+  [check('id').isNumeric(), validationResultsMiddleware],
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = req.params.id;
@@ -48,14 +48,14 @@ router.get(
 
 // Create series
 router.post(
-  "/",
+  '/',
   [
-    check("name").isString(),
-    check("altNames").optional().isString(),
-    check("status").isIn(["ongoing", "finished", "upcoming"]),
-    check("description").optional().isString(),
-    check("genres").optional().isString(),
-    check("coverImg").optional().isString(),
+    check('name').isString(),
+    check('altNames').optional().isString(),
+    check('status').isIn(['ongoing', 'finished', 'upcoming']),
+    check('description').optional().isString(),
+    check('genres').optional().isString(),
+    check('coverImg').optional().isString(),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
@@ -79,15 +79,15 @@ router.post(
 
 // Update series
 router.patch(
-  "/:id",
+  '/:id',
   [
-    check("id").isNumeric(),
-    check("name").optional().isString(),
-    check("altNames").optional().isString(),
-    check("status").optional().isIn(["ongoing", "finished", "upcoming"]),
-    check("description").optional().isString(),
-    check("genres").optional().isString(),
-    check("coverImg").optional().isString(),
+    check('id').isNumeric(),
+    check('name').optional().isString(),
+    check('altNames').optional().isString(),
+    check('status').optional().isIn(['ongoing', 'finished', 'upcoming']),
+    check('description').optional().isString(),
+    check('genres').optional().isString(),
+    check('coverImg').optional().isString(),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
@@ -103,7 +103,7 @@ router.patch(
     });
 
     if (Object.keys(filteredValues).length === 0) {
-      return next({ status: 400, error: "No fields updated" });
+      return next({ status: 400, error: 'No fields updated' });
     }
 
     try {
@@ -121,8 +121,8 @@ router.patch(
 
 // Delete series
 router.delete(
-  "/:id",
-  [check("id").isNumeric(), validationResultsMiddleware],
+  '/:id',
+  [check('id').isNumeric(), validationResultsMiddleware],
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
 

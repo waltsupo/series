@@ -1,10 +1,10 @@
-import Sequelize, { Model, DataTypes } from "sequelize";
+import Sequelize, { Model, DataTypes } from 'sequelize';
 
 class Episode extends Model {
   id: number;
   title: string;
   episodeNumber: number;
-  type: "episode" | "special" | "movie";
+  type: 'episode' | 'special' | 'movie';
   link: string;
   published?: Date;
 }
@@ -27,7 +27,7 @@ export default (sequelize: Sequelize.Sequelize) => {
       },
       type: {
         allowNull: false,
-        type: DataTypes.ENUM("episode", "special", "movie"),
+        type: DataTypes.ENUM('episode', 'special', 'movie'),
       },
       link: {
         allowNull: false,
@@ -39,17 +39,10 @@ export default (sequelize: Sequelize.Sequelize) => {
     },
     {
       defaultScope: {
-        attributes: [
-          "id",
-          "title",
-          "episodeNumber",
-          "type",
-          "link",
-          "published",
-        ],
+        attributes: ['id', 'title', 'episodeNumber', 'type', 'link', 'published'],
       },
       sequelize,
-      modelName: "episode",
+      modelName: 'episode',
     }
   );
 

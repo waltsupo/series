@@ -1,11 +1,11 @@
-import Sequelize, { Model, DataTypes } from "sequelize";
+import Sequelize, { Model, DataTypes } from 'sequelize';
 
 class Series extends Model {
   id: number;
   name: string;
   altNames?: string;
   description?: string;
-  status: "ongoing" | "finished" | "upcoming";
+  status: 'ongoing' | 'finished' | 'upcoming';
   coverImg?: string;
   genres?: string;
 }
@@ -30,7 +30,7 @@ export default (sequelize: Sequelize.Sequelize) => {
       },
       status: {
         allowNull: false,
-        type: DataTypes.ENUM("ongoing", "finished", "upcoming"),
+        type: DataTypes.ENUM('ongoing', 'finished', 'upcoming'),
       },
       coverImg: {
         type: DataTypes.STRING,
@@ -41,18 +41,10 @@ export default (sequelize: Sequelize.Sequelize) => {
     },
     {
       defaultScope: {
-        attributes: [
-          "id",
-          "name",
-          "altNames",
-          "description",
-          "status",
-          "coverImg",
-          "genres",
-        ],
+        attributes: ['id', 'name', 'altNames', 'description', 'status', 'coverImg', 'genres'],
       },
       sequelize,
-      modelName: "series",
+      modelName: 'series',
     }
   );
 

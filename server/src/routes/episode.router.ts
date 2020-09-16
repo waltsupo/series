@@ -1,38 +1,35 @@
-import express, { Request, Response, NextFunction } from "express";
-import { check } from "express-validator";
+import express, { Request, Response, NextFunction } from 'express';
+import { check } from 'express-validator';
 
-import db from "../database";
-import { validationResultsMiddleware, filterEmptyValues } from "../utils";
+import db from '../database';
+import { validationResultsMiddleware, filterEmptyValues } from '../utils';
 
 const router = express.Router();
 
 // Get 40 latest episodes
-router.get(
-  "/latest",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const episodes = await db.Episode.findAll({
-        limit: 40,
-        order: [["published", "DESC"]],
-        include: db.Series,
-      });
-      res.status(200).json({ status: 200, data: episodes });
-    } catch (error) {
-      next({ status: 500, error });
-    }
+router.get('/latest', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const episodes = await db.Episode.findAll({
+      limit: 40,
+      order: [['published', 'DESC']],
+      include: db.Series,
+    });
+    res.status(200).json({ status: 200, data: episodes });
+  } catch (error) {
+    next({ status: 500, error });
   }
-);
+});
 
 // Create episode
 router.post(
-  "/",
+  '/',
   [
-    check("title").isString(),
-    check("episodeNumber").isNumeric(),
-    check("type").isIn(["episode", "special", "movie"]),
-    check("link").isString(),
-    check("published").optional().isNumeric(),
-    check("seriesId").isNumeric(),
+    check('title').isString(),
+    check('episodeNumber').isNumeric(),
+    check('type').isIn(['episode', 'special', 'movie']),
+    check('link').isString(),
+    check('published').optional().isNumeric(),
+    check('seriesId').isNumeric(),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
@@ -50,8 +47,8 @@ router.post(
 
       res.status(201).json({ status: 201, data: episode });
     } catch (error) {
-      if (error.name === "SequelizeForeignKeyConstraintError") {
-        next({ status: 400, error: "Series with given ID does not exist" });
+      if (error.name === 'SequelizeForeignKeyConstraintError') {
+        next({ status: 400, error: 'Series with given ID does not exist' });
       }
       next({ status: 500, error });
     }
@@ -60,14 +57,14 @@ router.post(
 
 // update episode
 router.patch(
-  "/:id",
+  '/:id',
   [
-    check("id").isNumeric(),
-    check("title").optional().isString(),
-    check("episodeNumber").optional().isNumeric(),
-    check("type").optional().isIn(["episode", "special", "movie"]),
-    check("link").optional().isString(),
-    check("published").optional().isNumeric(),
+    check('id').isNumeric(),
+    check('title').optional().isString(),
+    check('episodeNumber').optional().isNumeric(),
+    check('type').optional().isIn(['episode', 'special', 'movie']),
+    check('link').optional().isString(),
+    check('published').optional().isNumeric(),
     validationResultsMiddleware,
   ],
   async (req: Request, res: Response, next: NextFunction) => {
@@ -82,7 +79,7 @@ router.patch(
     });
 
     if (Object.keys(filteredValues).length === 0) {
-      return next({ status: 400, error: "No fields updated" });
+      return next({ status: 400, error: 'No fields updated' });
     }
 
     try {
@@ -100,8 +97,8 @@ router.patch(
 
 // Delete episode
 router.delete(
-  "/:id",
-  [check("id").isNumeric(), validationResultsMiddleware],
+  '/:id',
+  [check('id').isNumeric(), validationResultsMiddleware],
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
 

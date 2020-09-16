@@ -9,7 +9,7 @@ const baseURL = 'https://localhost/api';
 const sendRequest = async (
   method: 'POST' | 'GET' | 'PATCH' | 'DELETE',
   endpoint: string,
-  data?: object
+  data?: Record<string, unknown>
 ): Promise<APIResponse> => {
   const options = {
     url: baseURL + endpoint,

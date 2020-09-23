@@ -107,7 +107,7 @@ router.patch(
     }
 
     try {
-      const [_, updated] = await db.Series.update(filteredValues, {
+      const [, updated] = await db.Series.update(filteredValues, {
         where: { id },
         returning: true,
       });

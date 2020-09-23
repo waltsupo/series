@@ -1,27 +1,23 @@
 {
   "parser": "@typescript-eslint/parser",
   "env": {
-    "browser": true,
+    "node": true,
     "es2020": true
   },
   "parserOptions": {
     "ecmaVersion": 11,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "plugins": ["@typescript-eslint"],
   "extends": [
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
   "rules": {
     "curly": "error",
-    "no-console": "warn",
     "no-eval": "error",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
 
 // Middleware To check if user is authenticated
-export const authenticationMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const authenticationMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -11,7 +11,11 @@ export const authenticationMiddleware = (req: Request, res: Response, next: Next
 };
 
 // Middleware to check that input validations passed
-export const validationResultsMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const validationResultsMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {

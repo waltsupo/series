@@ -21,16 +21,23 @@ const sendRequest = async (
     const response = await axios.request<APIResponse>(options);
     return response.data;
   } catch (error) {
-    if (error.response && error.response.status === 401) {
+    if (!error.response) {
+      // Mock API response if response is different from normal API response
+      return {
+        status: 400,
+        error: 'Unexpected error',
+      };
+    }
+
+    if (error.response.status === 401) {
       // Navigate user to login view for authentication
       if (history.location.pathname !== '/login') {
         useStore.getState().setUser(undefined);
         history.push('/login');
       }
-      return error.response.data;
-    } else {
-      return error.response.data;
     }
+
+    return error.response.data;
   }
 };
 

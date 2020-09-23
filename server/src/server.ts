@@ -113,6 +113,9 @@ process.on('unhandledRejection', (error) => {
   logger.error(error);
 });
 
+// Disable rule for next line as error handlers are not compatible
+// with no-used-vars -rule.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   if (!error.status || error.status === 500) {
     logger.error(error);

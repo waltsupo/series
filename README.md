@@ -29,6 +29,13 @@ Move to `client`-folder and run `npm i`
     "editor.formatOnSave": true,
     "prettier.jsxSingleQuote": false,
     "prettier.singleQuote": true,
+    "eslint.validate": [
+      "html",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact"
+    ],
   }
   ```
 

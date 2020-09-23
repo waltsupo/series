@@ -10,7 +10,7 @@ const Login: React.FC = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const setUser = useStore((state) => state.setUser);
 
   const login = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
 
     // If there are any errors with form fields
     if (Array.isArray(response.error)) {
-      const newErrors: any = {};
+      const newErrors: Record<string, string> = {};
       response.error.map((error: any) => (newErrors[error.param] = error.msg));
       setErrors(newErrors);
     }

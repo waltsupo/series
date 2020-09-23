@@ -25,7 +25,6 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode }: EpisodeCardProps) 
             {episode.published && (
               <Typography variant="caption">{`${episode.published.getDate()}.${episode.published.getMonth()}.${episode.published.getFullYear()}`}</Typography>
             )}
-
             <Typography variant="h6">{`${episode.series?.name}\n(Episode ${episode.episodeNumber})`}</Typography>
             <Typography variant="subtitle2">{episode.title}</Typography>
           </CardContent>

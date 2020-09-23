@@ -72,8 +72,6 @@ export default Login;
 
 const useStyles = makeStyles(() => ({
   form: {
-    width: '100%',
-    height: '100%',
     display: 'flex',
     flex: 1,
     alignItems: 'center',

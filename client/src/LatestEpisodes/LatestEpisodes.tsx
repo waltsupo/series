@@ -40,7 +40,9 @@ const LatestEpisodes: React.FC = () => {
       <Navbar />
       <Typography variant="h4">Latest episodes</Typography>
       <div className={styles.episodeList}>
-        {latest && latest.map((episode) => <EpisodeCard key={episode.id} episode={episode} />)}
+        {latest.map((episode) => (
+          <EpisodeCard key={episode.id} episode={episode} />
+        ))}
       </div>
     </div>
   );

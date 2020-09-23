@@ -21,7 +21,7 @@ Move to `client`-folder and run `npm i`
 
 ### Linting
 
-- Install Prettier and TSLint extensions
+- Install Prettier and ESLint extensions
 - Edit VSCode settings:
   ```
   {

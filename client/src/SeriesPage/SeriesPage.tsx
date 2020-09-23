@@ -9,6 +9,10 @@ import Player from './Player';
 import SeriesDetails from './SeriesDetails';
 import EpisodeList from './EpisodeList';
 
+interface RouteParams {
+  seriesId: string;
+}
+
 const SeriesPage: React.FC = () => {
   const styles = useStyles();
 
@@ -16,15 +20,16 @@ const SeriesPage: React.FC = () => {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [selectedEpisode, setSelectedEpisode] = useState(0);
 
-  const { seriesId } = useParams();
+  const { seriesId } = useParams<RouteParams>();
   const location = useLocation();
 
   // Effect to fetch series and episode information
   useEffect(() => {
     const getSeries = async () => {
+      const seriesIdAsNumber = parseInt(seriesId);
       const responses = await Promise.all([
-        fetchSingleSeries(seriesId),
-        fetchEpisodesForSeries(seriesId),
+        fetchSingleSeries(seriesIdAsNumber),
+        fetchEpisodesForSeries(seriesIdAsNumber),
       ]);
 
       setSeries(responses[0].data);

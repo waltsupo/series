@@ -83,7 +83,7 @@ router.patch(
     }
 
     try {
-      const [_, updated] = await db.Episode.update(filteredValues, {
+      const [, updated] = await db.Episode.update(filteredValues, {
         where: { id },
         returning: true,
       });
